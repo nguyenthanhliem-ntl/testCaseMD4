@@ -25,12 +25,12 @@ public class ClassContr {
     @Autowired
     private ITeacherService teacherService;
 
-    @ModelAttribute("Classerr")
+    @ModelAttribute("Classes")
     public Iterable<Teacher> teachers(){
         return teacherService.findAll();
     }
 
-    @GetMapping("/class")
+    @GetMapping("/class1")
     public ModelAndView showListClass(){
         Iterable<Classer> classes = classService.findAll();
         ModelAndView modelAndView = new ModelAndView("/class/createClass");
@@ -45,7 +45,7 @@ public class ClassContr {
         return modelAndView;
     }
 
-    @PostMapping("/craete-class")
+    @PostMapping("/create-class")
     public ModelAndView saveCreateClass(){
         ModelAndView modelAndView = new ModelAndView("/class/createClass");
         modelAndView.addObject("class",new Classer());
@@ -55,10 +55,10 @@ public class ClassContr {
 
     @GetMapping("/delete-class/{id}")
     public ModelAndView deleteClass(@PathVariable Long id){
-        Optional<Classer> classer = classService.findById(id);
-        if(classer.isPresent()){
+        Optional<Classer> classers = classService.findById(id);
+        if(classers.isPresent()){
             ModelAndView modelAndView = new ModelAndView("/class/deleteClass");
-            modelAndView.addObject("class", classer.get());
+            modelAndView.addObject("class", classers.get());
             return modelAndView;
         }else{
             ModelAndView modelAndView = new ModelAndView("/error");
