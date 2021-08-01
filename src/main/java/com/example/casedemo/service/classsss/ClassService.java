@@ -13,21 +13,21 @@ public class ClassService implements IClassService{
 
     @Override
     public Iterable<Classer> findAll() {
-        return null;
+        return classRepo.findAll();
     }
 
     @Override
     public Optional<Classer> findById(Long id) {
-        return Optional.empty();
+        return classRepo.findById(id);
     }
 
     @Override
     public void save(Classer aClasser) {
-
+        classRepo.save(aClasser);
     }
 
     @Override
     public void remove(Long id) {
-
+        classRepo.deleteById(id);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.casedemo.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "minister")
@@ -24,6 +25,10 @@ public class Minister extends Persion{
         Id = id;
     }
 
+    @OneToMany(mappedBy = "minister", cascade = CascadeType.ALL)
+    private List<Point> pointList;
+
+
     public Long getId() {
         return Id;
     }
@@ -31,4 +36,6 @@ public class Minister extends Persion{
     public void setId(Long id) {
         Id = id;
     }
+
+
 }

@@ -22,18 +22,16 @@ public class ClassContr {
     @Autowired
     private IClassService classService;
 
-    @Autowired
-    private ITeacherService teacherService;
 
     @ModelAttribute("Classes")
-    public Iterable<Teacher> teachers(){
-        return teacherService.findAll();
+    public Iterable<Classer> teachers(){
+        return classService.findAll();
     }
 
     @GetMapping("/class1")
     public ModelAndView showListClass(){
         Iterable<Classer> classes = classService.findAll();
-        ModelAndView modelAndView = new ModelAndView("/class/createClass");
+        ModelAndView modelAndView = new ModelAndView("/class/listClass");
         modelAndView.addObject("classes",classes);
         return modelAndView;
     }

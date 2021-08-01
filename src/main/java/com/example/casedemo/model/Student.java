@@ -1,6 +1,7 @@
 package com.example.casedemo.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "student")
@@ -19,6 +20,12 @@ public class Student extends Persion{
         super(name, email, password, phoneNumber, dateOfBirth, address, identity, idRole);
         Id = id;
     }
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "point_std",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name= "point_id"))
+    private List<Point> pointList;
+
 
     public Student() {
 
